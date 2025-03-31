@@ -1,0 +1,865 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đồng hành cùng ước mơ</title>
+    <style>
+    
+      body {
+         
+  background-size: cover;
+  background-repeat: no-repeat; 
+        font-family: "Roboto", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        
+    background-image: url('https://i.imgur.com/NZmsqz9.jpg'); /* Link ảnh */
+    background-size: cover; /* Phủ toàn bộ màn hình */
+    background-position: center; /* Căn giữa */
+     
+        }
+      }
+
+      header {
+        background-color: #1a56db;
+        color: white;
+        padding: 1.5rem 0;
+        width: 50%;
+      }
+
+      h1,
+      h2,
+      h3 {color:#CC0000:;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      h1 {color:#4169E1;
+        margin-bottom: 0.1rem;
+      }
+
+      .subtitle {
+        color: #CC0000;
+        font-style: italic;
+        margin-top: 0;
+      }
+
+      .chat-container,
+      .main-topics,
+      .resources,
+      .flyer-section,
+      .document-section,
+      .useful-resources {
+        width: 80%;
+        max-width: 800px;
+        margin: 2rem auto;
+      }
+
+      /* CSS cho phần tờ rơi */
+      .flyer-section {
+            text-align: center;
+            margin: 20px;
+        }
+        .flyer-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .flyer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .flyer-box {
+            width: 200px;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .flyer-content {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 5px;
+        }
+
+      .topics-grid,
+      .resources-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .topic-card,
+      .resource-card {
+        margin: 10px;
+        padding: 15px;
+        text-align: center;
+        background: #f9ebfa;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .chat-box {
+        border: 1px solid #ccc;
+        height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #f9f9f9;
+        border-radius: 5px;
+        text-align: left;
+      }
+
+      .message {
+        padding: 8px;
+        margin: 5px;
+        border-radius: 5px;
+        max-width: 70%;
+        position: relative;
+        clear: both;
+      }
+
+      .user-message {
+        background: #d1e7dd;
+        float: right;
+      }
+
+      .bot-message {
+        background: #e2e8f0;
+        float: left;
+      }
+
+      .chat-input {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .chat-input input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        background-color: #1a56db;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: ##f9ebfa;;
+      }
+
+      button.reset {
+        background-color: #9ca3af;
+      }
+
+      button.reset:hover {
+        background-color: #6b7280;
+      }
+
+      .flyer-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+      }
+
+      .flyer-buttons button {
+        background-color: #4caf50;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .flyer-section,
+      .document-section,
+      .useful-resources {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background: #f3f4f6;
+        border-radius: 5px;
+      }
+
+      .useful-resources-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .useful-resources {
+            text-align: center;
+            margin: 40px;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .useful-resources h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        .useful-resources-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .resource-box {
+            background-color: #007bff;
+            padding: 20px;
+            width: 250px;
+            border: none;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .resource-box a {
+            color: #fff;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            display: block;
+        }
+        .resource-box a:hover {
+            color: #ffeb3b;
+            text-decoration: underline;
+        }
+
+        /* Hiệu ứng hover cho các box */
+        .resource-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Tùy chỉnh cho điện thoại */
+        @media (max-width: 600px) {
+            .useful-resources {
+                margin: 20px;
+                padding: 20px;
+            }
+            .resource-box {
+                width: 200px;
+            }
+            .useful-resources h2 {
+                font-size: 24px;
+            }
+        }
+
+      .document-content {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 15px 0;
+        text-align: left;
+      }
+
+      .document-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .document-content h3 {
+        color: #1a56db;
+        margin-top: 0;
+        border-bottom: 2px solid #1a56db;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      .document-content h4 {
+        color: #2563eb;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+
+      .document-content ul {
+        padding-left: 20px;
+      }
+
+      .document-content li {
+        margin-bottom: 8px;
+      }
+
+      /* Phần style cho form báo cáo */
+      .data-input-section {
+        width: 90%;
+        max-width: 800px;
+        margin: 30px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+      }
+
+      .report-form {
+        margin-top: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        font-size: 16px;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #1a56db;
+        box-shadow: 0 0 0 2px rgba(26, 86, 219, 0.2);
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+        margin-top: 30px;
+      }
+
+      .form-actions button {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      #submit-report {
+        background-color: #1a56db;
+        color: white;
+      }
+
+      #submit-report:hover {
+        background-color: #0e46c7;
+        transform: translateY(-2px);
+      }
+
+      #reset-report {
+        background-color: #e5e7eb;
+        color: #4b5563;
+      }
+
+      #reset-report:hover {
+        background-color: #d1d5db;
+      }
+
+      .resource-box a {
+        color: #1a56db;
+        text-decoration: none;
+        font-weight: bold;
+        display: block;
+        width: 100%;
+        height: 100%;
+        transition: color 0.3s;
+      }
+
+      .resource-box a:hover {
+        color: #0e46c7;
+        text-decoration: underline;
+      }
+
+      @media (max-width: 768px) {
+        .resource-box {
+          width: 100%;
+        }
+
+        .solutions-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .chat-container,
+        .main-topics,
+        .resources,
+        .document-section,
+        .flyer-section,
+        .useful-resources {
+          width: 95%;
+        }
+
+        .flyer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body background-image: url('https://imgur.com/NZmsqz9');>
+    <header>
+      <h1>ĐỒNG HÀNH CÙNG ƯỚC MƠ</h1>
+      <p class="subtitle">Nói không với lao động trẻ em trái pháp luật</p>
+    </header>
+
+    <div class="chat-container">
+      <div class="chat-section">
+        <div class="chat-header">
+          <h2>Trò chuyện với ChatBot</h2>
+          <p>Hãy hỏi bằng từ khóa: Khái niệm, nguyên nhân, tác hại,...</p>
+        </div>
+        <div class="chat-box" id="chat-box">
+          <div class="message bot-message">
+            Xin chào! Tôi có thể giúp gì cho bạn về vấn đề lao động trẻ em?
+          </div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="user-input" placeholder="Nhập tin nhắn..." />
+          <button class="send" onclick="sendMessage()">Gửi</button>
+          <button class="reset" onclick="resetChat()">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="document-section">
+      <h2>Tài liệu tham khảo</h2>
+      <p>Xem thông tin chi tiết về phòng ngừa lao động trẻ em.</p>
+      <div class="document-content" id="document-content" style="display: none">
+        <h3>Phòng ngừa lao động trẻ em</h3>
+
+        <h4>1. Khái niệm lao động trẻ em</h4>
+        <p>
+          Lao động trẻ em là việc trẻ em tham gia vào các công việc ảnh hưởng
+          tiêu cực đến sự phát triển thể chất, tinh thần, giáo dục và tương lai
+          của các em. Không phải mọi công việc trẻ em làm đều bị xem là lao động
+          trẻ em, nhưng những công việc nguy hiểm, vất vả, làm ngoài độ tuổi lao
+          động theo quy định của pháp luật thì bị coi là vi phạm.
+        </p>
+
+        <h4>2. Tình trạng lao động trẻ em</h4>
+        <ul>
+          <li>
+            Theo Tổ chức Lao động Quốc tế (ILO), hiện nay có khoảng 160 triệu
+            trẻ em đang phải lao động trên toàn cầu, trong đó gần một nửa làm
+            việc trong điều kiện nguy hiểm.
+          </li>
+          <li>
+            Tình trạng này phổ biến hơn ở các nước đang phát triển, đặc biệt
+            trong các ngành nông nghiệp, sản xuất thủ công, khai thác khoáng sản
+            và dịch vụ gia đình.
+          </li>
+          <li>
+            Nguyên nhân chính bao gồm: nghèo đói, thiếu tiếp cận giáo dục, thiếu
+            hiểu biết về quyền trẻ em, và nhu cầu lao động giá rẻ của các doanh
+            nghiệp.
+          </li>
+        </ul>
+
+        <h4>3. Tác hại của lao động trẻ em</h4>
+        <ul>
+          <li>
+            <strong>Ảnh hưởng sức khỏe</strong>: Lao động sớm có thể khiến trẻ
+            bị suy dinh dưỡng, tai nạn lao động, mắc các bệnh nghề nghiệp.
+          </li>
+          <li>
+            <strong>Tác động tâm lý</strong>: Trẻ em dễ bị lạm dụng, bạo lực, và
+            chịu nhiều áp lực tinh thần.
+          </li>
+          <li>
+            <strong>Giáo dục bị gián đoạn</strong>: Trẻ em phải bỏ học hoặc
+            không thể tiếp thu tốt kiến thức do thời gian làm việc quá nhiều.
+          </li>
+          <li>
+            <strong>Tương lai bị ảnh hưởng</strong>: Trẻ em lao động sớm thường
+            có ít cơ hội cải thiện cuộc sống và bị mắc kẹt trong vòng luẩn quẩn
+            của đói nghèo.
+          </li>
+        </ul>
+
+        <h4>4. Cách phòng ngừa lao động trẻ em</h4>
+        <ul>
+          <li>
+            <strong>Tăng cường giáo dục</strong>: Đảm bảo trẻ em được đi học đầy
+            đủ và có chính sách hỗ trợ học phí cho trẻ em nghèo.
+          </li>
+          <li>
+            <strong>Nâng cao nhận thức</strong>: Cung cấp thông tin cho cộng
+            đồng về quyền trẻ em và tác hại của lao động trẻ em.
+          </li>
+          <li>
+            <strong>Hỗ trợ tài chính cho gia đình nghèo</strong>: Giảm bớt áp
+            lực kinh tế để phụ huynh không ép con đi làm sớm.
+          </li>
+          <li>
+            <strong>Thực thi pháp luật nghiêm ngặt</strong>: Giám sát và xử phạt
+            các cá nhân, tổ chức sử dụng lao động trẻ em trái phép.
+          </li>
+          <li>
+            <strong>Hỗ trợ tái hòa nhập cho trẻ em</strong>: Cung cấp chương
+            trình đào tạo nghề và hỗ trợ tâm lý cho trẻ em từng phải lao động.
+          </li>
+        </ul>
+
+        <h4>5. Một số luật về lao động trẻ em</h4>
+        <ul>
+          <li>
+            <strong>Công ước ILO số 138 (1973)</strong>: Quy định về độ tuổi tối
+            thiểu để làm việc.
+          </li>
+          <li>
+            <strong>Công ước ILO số 182 (1999)</strong>: Cấm các hình thức lao
+            động trẻ em tồi tệ nhất như nô lệ, buôn bán trẻ em, lao động cưỡng
+            bức, sử dụng trẻ em trong xung đột vũ trang.
+          </li>
+          <li>
+            <strong>Công ước Liên Hợp Quốc về Quyền Trẻ em (1989)</strong>: Bảo
+            vệ quyền trẻ em khỏi bóc lột lao động.
+          </li>
+          <li>
+            <strong>Luật pháp Việt Nam</strong>:
+            <ul>
+              <li>
+                Bộ luật Lao động 2019: Cấm lao động trẻ em dưới 15 tuổi, ngoại
+                trừ công việc nhẹ từ 13 tuổi trở lên với điều kiện đảm bảo an
+                toàn.
+              </li>
+              <li>
+                Luật Trẻ em 2016: Quy định quyền của trẻ em, bao gồm quyền được
+                bảo vệ khỏi lao động sớm.
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <h4>6. Các tổ chức bảo vệ trẻ em</h4>
+        <ul>
+          <li>
+            <strong>Tổ chức Lao động Quốc tế (ILO)</strong>: Chống lao động trẻ
+            em thông qua các chương trình hỗ trợ chính sách và giám sát toàn
+            cầu.
+          </li>
+          <li>
+            <strong>UNICEF (Quỹ Nhi đồng Liên Hợp Quốc)</strong>: Thực hiện các
+            dự án giáo dục, y tế và bảo vệ trẻ em khỏi bóc lột lao động.
+          </li>
+          <li>
+            <strong>Tổ chức Save the Children</strong>: Cung cấp hỗ trợ cho trẻ
+            em bị bóc lột lao động và thúc đẩy giáo dục.
+          </li>
+          <li>
+            <strong>ChildFund International</strong>: Hỗ trợ trẻ em nghèo và gia
+            đình để giảm thiểu lao động trẻ em.
+          </li>
+          <li>
+            <strong>Tổ chức Blue Dragon (Rồng Xanh, Việt Nam)</strong>: Giải cứu
+            trẻ em bị lạm dụng lao động và hỗ trợ tái hòa nhập xã hội.
+          </li>
+        </ul>
+      </div>
+      <div class="document-buttons">
+        <button id="show-document" onclick="toggleDocument()">
+          Hiển thị tài liệu
+        </button>
+      </div>
+    </div>
+
+    <div class="flyer-section">
+        <h2>Tờ rơi thông tin</h2>
+        <p>Các tờ rơi được các bạn học sinh Hoàng Hoa Thám thiết kế nhằm tuyên truyền về phòng chống lao động trẻ em.</p>
+        <div class="flyer-buttons">
+            <button id="show-flyer" onclick="toggleFlyer()">Hiển thị tờ rơi</button>
+        </div>
+        <div class="flyer-grid" id="flyer-content" style="display: none;">
+            <div class="flyer-box" style="background-image: url('https://i.imgur.com/WDC04i9.jpg');">
+                <div class="flyer-content">
+                   
+                    <p><a
+            href="https://www.canva.com/design/DAGjNbaASRI/DpEZEi9ucOnv7GdyLnTvIg/edit?utm_content=DAGjNbaASRI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+            target="_blank"
+            >Link tờ rơi</a
+          ></p>
+                </div>
+            </div>
+            <div class="flyer-box" style="background-image: url('https://i.imgur.com/aw1Rl9y.jpg');">
+                <div class="flyer-content">
+                  
+                      <p><a
+            href="https://www.canva.com/design/DAGjNijJDHA/xFbNpV1hJeK7ZNKKxCJQWg/edit?utm_content=DAGjNijJDHA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+            target="_blank"
+            >Link tờ rơi</a
+          ></p>
+                </div>
+            </div>
+            <div class="flyer-box" style="background-image: url('https://i.imgur.com/mtXIy1K.jpg');">
+                <div class="flyer-content">
+          
+                   <p><a
+            href="https://www.canva.com/design/DAGjNhUOMKQ/y_gHNEOV74yi3ZgrDfvuFQ/edit?utm_content=DAGjNhUOMKQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+            target="_blank"
+            >Link tờ rơi</a
+          ></p>
+                </div>
+            </div>
+            <div class="flyer-box" style="background-image: url('https://i.imgur.com/zLJhWtF.jpg');">
+                <div class="flyer-content">
+               
+                      <p><a
+            href="https://www.canva.com/design/DAGjNbctZiQ/JApnvT3fnPFxnWOiiQLVxw/edit?utm_content=DAGjNbctZiQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+            target="_blank"
+            >Link tờ rơi</a
+          ></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 800px; margin: auto; text-align: center; font-family: Arial, sans-serif; background-color: #f8f8f8; padding: 20px;">
+        <h2>Tài nguyên hữu ích</h2>
+        <div class="resources" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <div class="card" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 30%; margin: 10px; text-align: center;">
+                <div class="icon" style="font-size: 30px; color: #007bff;">🌍</div>
+                <h3>ILO - Chương trình IPEC</h3>
+                <p>Chương trình quốc tế về xóa bỏ lao động trẻ em của Tổ chức Lao động Quốc tế (ILO).</p>
+                <a href="https://en-m-wikipedia-org.translate.goog/wiki/International_Programme_on_the_Elimination_of_Child_Labour?_x_tr_sl=en&_x_tr_tl=vi&_x_tr_hl=vi&_x_tr_pto=tc" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold;">Xem trang web</a>
+            </div>
+            <div class="card" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 30%; margin: 10px; text-align: center;">
+                <div class="icon" style="font-size: 30px; color: #007bff;">🎓</div>
+                <h3>UNICEF Việt Nam</h3>
+                <p>Thông tin và chương trình bảo vệ trẻ em do UNICEF Việt Nam thực hiện.</p>
+                <a href="https://www.unicef.org/vietnam/vi" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold;">Xem trang web</a>
+            </div>
+            <div class="card" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 30%; margin: 10px; text-align: center;">
+                <div class="icon" style="font-size: 30px; color: #007bff;">⚖️</div>
+                <h3>Bộ LĐTBXH Việt Nam</h3>
+                <p>Thông tin chính thức về phòng chống lao động trẻ em từ Bộ Lao động - Thương binh và Xã hội.</p>
+                <a href="https://molisa.gov.vn/chuyenmuc/71"  target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold;">Xem trang web</a>
+            </div>
+        </div>
+    </div>
+    <script>
+      // Xử lý hiển thị tài liệu
+      function toggleDocument() {
+        const content = document.getElementById("document-content");
+        const button = document.getElementById("show-document");
+
+        if (content.style.display === "none") {
+          content.style.display = "block";
+          button.textContent = "Ẩn tài liệu";
+        } else {
+          content.style.display = "none";
+          button.textContent = "Hiển thị tài liệu";
+        }
+      }
+
+      // Chat responses for the bot - Dữ liệu từ file nội dung.docx
+      const chatResponses = {
+        default:
+          "Xin lỗi, tôi không có thông tin về câu hỏi này. Vui lòng hỏi về lao động trẻ em hoặc liên hệ với chúng tôi để được hỗ trợ thêm.",
+        chào: "Xin chào! Tôi có thể giúp gì cho bạn về vấn đề lao động trẻ em?",
+        hi: "Xin chào! Tôi có thể giúp gì cho bạn về vấn đề lao động trẻ em?",
+        hello:
+          "Xin chào! Tôi có thể giúp gì cho bạn về vấn đề lao động trẻ em?",
+
+        // Khái niệm về lao động trẻ em
+        "khái niệm":
+        "Lao động trẻ em (Child labor) là việc sử dụng trẻ em vào các công việc có thể ảnh hưởng đến sức khỏe, sự phát triển thể chất, tinh thần, đạo đức hoặc cản trở việc học tập của các em. Đây là một vấn đề xã hội nghiêm trọng, đặc biệt ở các nước đang phát triển.",
+        "định nghĩa":
+          "Lao động trẻ em (Child labor) là việc sử dụng trẻ em vào các công việc có thể ảnh hưởng đến sức khỏe, sự phát triển thể chất, tinh thần, đạo đức hoặc cản trở việc học tập của các em. Đây là một vấn đề xã hội nghiêm trọng, đặc biệt ở các nước đang phát triển.",
+
+        // Lao động trẻ em bất hợp pháp
+        "trẻ em bất hợp pháp":
+          "Lao động trẻ em bất hợp pháp là việc sử dụng trẻ em vào các công việc vi phạm pháp luật, ảnh hưởng tiêu cực đến sức khỏe, sự phát triển thể chất, tinh thần và quyền lợi của trẻ. Đây là những hình thức lao động bị cấm theo luật pháp quốc gia và các công ước quốc tế.",
+
+        // Phân loại lao động trẻ em
+        "phân loại":
+          "Lao động trẻ em được phân loại thành: 1) Lao  động chấp nhận được: Những công việc nhẹ nhàng, giúp trẻ phát triển kỹ năng và không ảnh hưởng đến việc học. 2) Lao động có hại: Công việc nguy hiểm, nặng nhọc, ảnh hưởng đến sức khỏe, tinh thần và tương lai của trẻ.3) Hình thức tồi tệ nhất: Bao gồm lao động cưỡng bức, mua bán trẻ em, bóc lột tình dục, buôn bán ma túy,...",
+
+        // Đặc điểm của lao động trẻ em bất hợp pháp
+        "đặc điểm":
+          "Đặc điểm của lao động trẻ em bất hợp pháp bao gồm: 1) Trái với luật pháp: Vi phạm các quy định về độ tuổi lao động tối thiểu hoặc điều kiện làm việc cho trẻ em. 2) Ảnh hưởng tiêu cực đến trẻ: Gây tổn hại đến sức khỏe, tinh thần, hoặc cản trở việc học tập của trẻ. 3) Bao gồm các hình thức nguy hiểm và bóc lột: Như lao động cưỡng bức, làm việc trong môi trường độc hại, bị lạm dụng hoặc buôn bán.",
+        "dấu hiệu":
+          "Các dấu hiệu nhận biết lao động trẻ em trái pháp luật: trẻ không đi học đều đặn, làm việc trong môi trường nguy hiểm, có dấu hiệu mệt mỏi, chấn thương hoặc sức khỏe kém, làm việc quá nhiều giờ hoặc vào ban đêm.",
+        "nhận biết":
+          "Các dấu hiệu nhận biết lao động trẻ em trái pháp luật: trẻ không đi học đều đặn, làm việc trong môi trường nguy hiểm, có dấu hiệu mệt mỏi, chấn thương hoặc sức khỏe kém, làm việc quá nhiều giờ hoặc vào ban đêm.",
+
+        // Nguyên nhân dẫn đến lao động trẻ em
+        "nguyên nhân":
+          "Nguyên nhân dẫn đến lao động trẻ em bao gồm: 1) Nghèo đói: Gia đình không đủ điều kiện kinh tế nên buộc trẻ em phải làm việc để phụ giúp. 2) Thiếu nhận thức: Nhiều gia đình và trẻ em không biết quyền lợi của mình và hậu quả của lao động sớm. 3) Thiếu chính sách bảo vệ: Luật pháp chưa đủ nghiêm minh hoặc chưa được thực thi hiệu quả. 4) Nhu cầu lao động giá rẻ: Các doanh nghiệp, chủ lao động lợi dụng trẻ em vì chi phí thấp.",
+
+        // Ví dụ về lao động trẻ em bất hợp pháp
+        "ví dụ":
+          "Ví dụ về lao động trẻ em bất hợp pháp bao gồm: 1) Lao động cưỡng bức: Ép buộc trẻ làm việc mà không có sự đồng ý hoặc trả công xứng đáng. 2) Làm việc trong môi trường độc hại: Như hầm mỏ, nhà máy hóa chất, công trường xây dựng. 3) Bóc lột tình dục: Mua bán trẻ em cho mục đích mại dâm hoặc khiêu dâm. 4) Buôn bán, sử dụng trẻ em cho hoạt động phạm pháp: Như buôn lậu, ăn xin có tổ chức, sử dụng trẻ em trong xung đột vũ trang. 5) Làm việc quá thời gian quy định: Trẻ em bị ép làm việc nhiều giờ mà không có thời gian nghỉ ngơi hoặc học tập.",
+
+        // Luật pháp về lao động trẻ em
+        "quy định":
+          "Luật pháp về lao động trẻ em bao gồm: Bộ luật Lao động Việt Nam 2019 (Điều 143: Người dưới 15 tuổi không được làm việc, trừ một số công việc nhẹ do Nhà nước quy định. Điều 144: Người từ 13 - 15 tuổi chỉ được làm việc tối đa 4 giờ/ngày, 20 giờ/tuần, không làm ca đêm. Điều 145: Người từ 15 - 18 tuổi không được làm việc trong môi trường độc hại, nguy hiểm hoặc công việc quá sức.). Ngoài ra còn có Luật Trẻ em 2016 và Bộ luật Hình sự Việt Nam 2015 (sửa đổi 2017) cũng có các điều khoản bảo vệ trẻ em khỏi lao động bất hợp pháp.",
+        luật: "Luật pháp về lao động trẻ em bao gồm: Bộ luật Lao động Việt Nam 2019 (Điều 143: Người dưới 15 tuổi không được làm việc, trừ một số công việc nhẹ do Nhà nước quy định. Điều 144: Người từ 13 - 15 tuổi chỉ được làm việc tối đa 4 giờ/ngày, 20 giờ/tuần, không làm ca đêm. Điều 145: Người từ 15 - 18 tuổi không được làm việc trong môi trường độc hại, nguy hiểm hoặc công việc quá sức.). Ngoài ra còn có Luật Trẻ em 2016 và Bộ luật Hình sự Việt Nam 2015 (sửa đổi 2017) cũng có các điều khoản bảo vệ trẻ em khỏi lao động bất hợp pháp.",
+        "pháp luật":
+          "Luật pháp về lao động trẻ em bao gồm: Bộ luật Lao động Việt Nam 2019 (Điều 143: Người dưới 15 tuổi không được làm việc, trừ một số công việc nhẹ do Nhà nước quy định. Điều 144: Người từ 13 - 15 tuổi chỉ được làm việc tối đa 4 giờ/ngày, 20 giờ/tuần, không làm ca đêm. Điều 145: Người từ 15 - 18 tuổi không được làm việc trong môi trường độc hại, nguy hiểm hoặc công việc quá sức.). Ngoài ra còn có Luật Trẻ em 2016 và Bộ luật Hình sự Việt Nam 2015 (sửa đổi 2017) cũng có các điều khoản bảo vệ trẻ em khỏi lao động bất hợp pháp.",
+        "công ước":
+          "Công ước quốc tế về lao động trẻ em bao gồm: 1) Công ước số 138 của Tổ chức Lao động Quốc tế (ILO) – Năm 1973: Quy định độ tuổi tối thiểu để lao động là 15 tuổi. 2) Công ước số 182 của ILO – Năm 1999: Cấm các hình thức lao động trẻ em tồi tệ nhất. 3) Công ước Quyền trẻ em của Liên Hợp Quốc – Năm 1989: Điều 32 và 34 bảo vệ trẻ em khỏi lao động có hại và bóc lột tình dục.",
+
+        // Hình phạt đối với lao động trẻ em bất hợp pháp
+        "hình phạt":
+          "Hình phạt đối với lao động trẻ em bất hợp pháp: Doanh nghiệp vi phạm có thể bị phạt tiền từ 50 triệu đến 500 triệu đồng hoặc đình chỉ hoạt động. Cá nhân sử dụng lao động trẻ em trái phép có thể bị phạt tù lên đến 12 năm.",
+
+        // Tác hại của lao động trẻ em bất hợp pháp
+        "tác hại":
+          "Tác hại của lao động trẻ em bất hợp pháp: 1) Đối với trẻ em: Gây hại đến sức khỏe, ảnh hưởng đến tinh thần, cản trở việc học, bị bóc lột và lạm dụng. 2) Đối với gia đình: Vẫn không thoát nghèo, mất cơ hội thay đổi cuộc sống, có thể bị xử lý theo pháp luật. 3) Đối với xã hội: Gia tăng tệ nạn xã hội, làm giảm chất lượng nguồn nhân lực, tạo gánh nặng cho xã hội. 4) Đối với nền kinh tế: Làm chậm sự phát triển kinh tế, doanh nghiệp vi phạm bị xử phạt, ảnh hưởng đến hình ảnh quốc gia.",
+        "hậu quả":
+          "Tác hại của lao động trẻ em bất hợp pháp: 1) Đối với trẻ em: Gây hại đến sức khỏe, ảnh hưởng đến tinh thần, cản trở việc học, bị bóc lột và lạm dụng. 2) Đối với gia đình: Vẫn không thoát nghèo, mất cơ hội thay đổi cuộc sống, có thể bị xử lý theo pháp luật. 3) Đối với xã hội: Gia tăng tệ nạn xã hội, làm giảm chất lượng nguồn nhân lực, tạo gánh nặng cho xã hội. 4) Đối với nền kinh tế: Làm chậm sự phát triển kinh tế, doanh nghiệp vi phạm bị xử phạt, ảnh hưởng đến hình ảnh quốc gia.",
+
+        // Giải pháp cho vấn đề lao động trẻ em
+        "giải pháp":
+          "Giải pháp phòng ngừa lao động trẻ em bao gồm: 1) Giáo dục: Đảm bảo mọi trẻ em được đến trường và nhận giáo dục chất lượng. 2) Nâng cao nhận thức: Tuyên truyền về tác hại của lao động trẻ em. 3) Hỗ trợ kinh tế: Cung cấp hỗ trợ tài chính cho gia đình nghèo. 4) Thực thi pháp luật: Kiểm tra, giám sát và xử phạt nghiêm các vi phạm. 5) Hợp tác quốc tế: Chia sẻ kinh nghiệm và nguồn lực. 6) Tái hòa nhập: Hỗ trợ trẻ em từng bị lạm dụng lao động.",
+        "phòng ngừa":          "Phòng ngừa lao động trẻ em cần: 1) Tăng cường giáo dục phổ cập. 2) Nâng cao mức sống cho gia đình nghèo. 3) Phổ biến luật pháp về quyền trẻ em. 4) Tạo cơ hội việc làm cho người lớn. 5) Giám sát và xử phạt nghiêm các trường hợp vi phạm. 6) Xây dựng mạng lưới bảo vệ trẻ em tại cộng đồng.",
+        "cách giải quyết":
+          "Để giải quyết vấn đề lao động trẻ em, cần kết hợp nhiều biện pháp: 1) Đảm bảo trẻ em được đi học đầy đủ. 2) Tạo sinh kế bền vững cho gia đình. 3) Thực thi chặt chẽ các quy định pháp luật. 4) Tổ chức các chiến dịch tuyên truyền. 5) Hỗ trợ tâm lý, giáo dục và đào tạo nghề cho trẻ em đã từng lao động. 6) Xây dựng hệ thống báo cáo và can thiệp kịp thời.",
+
+        // Các thông tin khác
+        "báo cáo":
+          "Khi phát hiện trường hợp lao động trẻ em trái pháp luật, bạn có thể báo cáo cho chính quyền địa phương, gọi đến đường dây nóng bảo vệ trẻ em 111 hoặc liên hệ với Sở Lao động - Thương binh và Xã hội tại địa phương.",
+        "hỗ trợ":
+          "Các hình thức hỗ trợ trẻ em thoát khỏi lao động trái pháp luật bao gồm: hỗ trợ tái hòa nhập cộng đồng, cung cấp học bổng, đào tạo nghề, tư vấn tâm lý và hỗ trợ gia đình về kinh tế.",
+        "giúp đỡ":
+          "Các hình thức hỗ trợ trẻ em thoát khỏi lao động trái pháp luật bao gồm: hỗ trợ tái hòa nhập cộng đồng, cung cấp học bổng, đào tạo nghề, tư vấn tâm lý và hỗ trợ gia đình về kinh tế.",
+        "tài liệu":
+          "Bạn có thể tải các tài liệu về lao động trẻ em từ mục Tài liệu & Nguồn lực trên trang web của chúng tôi. Chúng tôi cung cấp tờ rơi thông tin và tài liệu tham khảo chi tiết.",
+        "liên hệ":
+          "Bạn có thể liên hệ với chúng tôi qua email info@donghanh.org hoặc số điện thoại +84 123 456 789. Ngoài ra, bạn cũng có thể sử dụng đường dây nóng bảo vệ trẻ em 111 để báo cáo các trường hợp khẩn cấp.",
+        "biện pháp":
+          "Các biện pháp ngăn chặn lao động trẻ em bao gồm: 1) Tăng cường giáo dục cho trẻ em và gia đình về quyền trẻ em. 2) Hỗ trợ kinh tế cho các gia đình khó khăn. 3) Thực thi nghiêm các quy định pháp luật về lao động trẻ em. 4) Tăng cường giám sát và thanh tra tại các khu vực có nguy cơ cao. 5) Phát triển mạng lưới bảo vệ trẻ em tại cộng đồng.",
+      
+        
+        
+      };
+
+      function getResponse(message) {
+        const lowerMessage = message.toLowerCase();
+
+        for (const key in chatResponses) {
+          if (lowerMessage.includes(key)) {
+            return chatResponses[key];
+          }
+        }
+
+        return chatResponses["default"];
+      }
+
+      function sendMessage() {
+        const inputField = document.getElementById("user-input");
+        const chatBox = document.getElementById("chat-box");
+        const message = inputField.value.trim();
+        if (message === "") return;
+
+        // Thêm tin nhắn của người dùng
+        const userMessage = document.createElement("div");
+        userMessage.className = "message user-message";
+        userMessage.textContent = message;
+        chatBox.appendChild(userMessage);
+
+        // Xóa tin nhắn trong input
+        inputField.value = "";
+
+        // Cuộn xuống dưới
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Đợi một chút rồi thêm phản hồi từ bot
+        setTimeout(() => {
+          const botResponse = getResponse(message);
+          const botMessage = document.createElement("div");
+          botMessage.className = "message bot-message";
+          botMessage.textContent = botResponse;
+          chatBox.appendChild(botMessage);
+
+          // Cuộn xuống dưới lần nữa
+          chatBox.scrollTop = chatBox.scrollHeight;
+        }, 1000);
+      }
+
+      function resetChat() {
+        const chatBox = document.getElementById("chat-box");
+        chatBox.innerHTML =
+          '<div class="message bot-message">Xin chào! Tôi có thể giúp gì cho bạn về vấn đề lao động trẻ em?</div>';
+      }
+
+      // Xử lý hiển thị tờ rơi
+      function toggleFlyer() {
+        const content = document.getElementById("flyer-content");
+        const button = document.getElementById("show-flyer");
+
+        if (content.style.display === "none") {
+          content.style.display = "grid";
+          button.textContent = "Ẩn tờ rơi";
+        } else {
+          content.style.display = "none";
+          button.textContent = "Hiển thị tờ rơi";
+        }
+      }
+
+      // Cho phép sử dụng phím Enter để gửi tin nhắn
+      document
+        .getElementById("user-input")
+        .addEventListener("keyup", function (event) {
+          if (event.key === "Enter") {
+            sendMessage();
+          }
+        });
+    </script>
+    <div class="footer" style="background: #fff; color: black; text-align: center; padding: 20px; margin-top: 20px;">
+        <div style="display: flex; justify-content: space-around; max-width: 800px; margin: auto; flex-wrap: wrap;">
+            <div>
+                <h3>Về chúng tôi</h3>
+                <p>Dự án Bùi Phương Thảo Ly THPT Hoàng Hoa Thám 
+                cung cấp thông tin và nâng cao nhận thức về phòng chống lao động trẻ em.</p>
+            </div>
+            <div>
+                <h3>Liên kết nhanh</h3>
+                <p><a href="#" style="color: #00aced; text-decoration: none;">Trò chuyện với Chatbot</a></p>
+            </div>
+            <div>
+                <h3>Liên hệ</h3>
+                <p>Email:phuongwly@gmail.com</p>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
